@@ -21,12 +21,33 @@
       </nav>
 
       <div class="container-fluid flex-grow-1 h-100 pt-3 pb-3">
-        <div class="container-sm p-0">
-          <p>content</p>
+        <div class="container-sm p-0 h-100">
+          <div class="row h-100">
+            <div class="col-md-9 d-flex flex-column">
+              <div class="row">
+                <div class="col-md-3">
+                  <label for="inputTrigger" class="form-label">Trigger</label>
+                  <input type="text" id="inputTrigger" class="form-control">
+                </div>
+                <div class="col-md-9">
+                  <label for="inputDescription" class="form-label">Description</label>
+                  <input type="text" id="inputDescription" class="form-control">
+                </div>
+              </div>
+              <div class="row flex-grow-1">
+                <div class="col-md-12 mt-3 flex-grow-1">
+                  <div class="h-100 border" id="code-editor"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">lista</div>
+          </div>
         </div>
       </div>
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="./monaco-editor/min/vs/loader.js"></script>
+    <script src="./editor.js"></script>
   </body>
 </html>
