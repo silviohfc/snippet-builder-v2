@@ -1,7 +1,7 @@
 require.config({ paths: { vs: "monaco-editor/min/vs" } });
 
 var editor;
-var didScrollChangeDisposable;
+var testEditor;
 
 require(["vs/editor/editor.main"], function () {
   editor = monaco.editor.create(document.getElementById("code-editor"), {
@@ -13,4 +13,13 @@ require(["vs/editor/editor.main"], function () {
     language: "javascript",
     automaticLayout: true,
   });
+
+  testEditor = monaco.editor.create(
+    document.getElementById("test-code-editor"),
+    {
+      value: "",
+      language: "javascript",
+      automaticLayout: true,
+    }
+  );
 });
