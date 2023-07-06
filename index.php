@@ -45,14 +45,10 @@
                 <label class="mb-2">Saved Snippets</label>
               </div>
               <div class="row h-100 mh-100 overflow-auto">
-                <div class="list-group">
-                  <button type="button" class="list-group-item list-group-item-action">A second button item</button>
-                  <button type="button" class="list-group-item list-group-item-action">A second button item</button>
-                  
-                </div>
+                <div class="list-group"></div>
               </div>
               <div class="row">
-                <button type="button" class="btn btn-success mt-3">Save</button>
+                <button type="submit" class="btn btn-success mt-3" id="button-save">Save</button>
               </div>
             </div>
           </div>
@@ -60,8 +56,10 @@
       </div>
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script src="./monaco-editor/min/vs/loader.js"></script>
     <script src="./editor.js"></script>
+    <script src="./form.js"></script>
   </body>
 </html>
