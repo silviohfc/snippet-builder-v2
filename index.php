@@ -16,7 +16,17 @@
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-sm d-flex justify-content-between p-0">
           <a class="navbar-brand" href="#">Snippet Builder</a>
-          <button class="btn btn-outline-success" type="button">Test & Build</button>
+          <div class="row">
+            <div class="col-md-6 align-self-center">
+              <div class="form-check form-switch">
+                <label class="form-check-label" for="themeSwitch">Dark Mode</label>
+                <input class="form-check-input" type="checkbox" role="switch" id="themeSwitch">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-outline-success" type="button">Test & Build</button>
+            </div>
+          </div>
         </div>
       </nav>
 
