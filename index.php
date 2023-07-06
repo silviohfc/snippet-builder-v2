@@ -24,7 +24,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <button class="btn btn-outline-success" type="button" id="buttonTestBuild" data-bs-toggle="modal" data-bs-target="#modalBuild">Test & Build</button>
+              <button class="btn btn-outline-success" type="button" id="buttonTestBuild" data-bs-toggle="modal" data-bs-target="#modalBuild"><i class="bi bi-braces"></i> Generate</button>
             </div>
           </div>
         </div>
@@ -56,16 +56,11 @@
               </div>
               <div class="row h-100 mh-100 overflow-auto">
                 <div class="list-group">
-                  <div class="list-group-item list-group-item-action grid">
-                    <button type="button" class="list-group-item list-group-item-action">
-                      Teste
-                    </button>
-                    <button class="position-absolute end-0">D</button>
-                  </div>
+                  
                 </div>
               </div>
               <div class="row">
-                <button type="submit" class="btn btn-success mt-3" id="button-save">Save</button>
+                <button type="submit" class="btn btn-success mt-3" id="button-save"><i class="bi bi-plus-lg"></i> Save</button>
               </div>
             </div>
           </div>
