@@ -69,14 +69,37 @@ function updateSavedSnippets() {
   for (const trigger of Object.keys(localStorage)) {
     if (trigger === "sys_theme_config") continue;
     savedSnippetElements = savedSnippetElements.concat(
-      `<button type="button" class="list-group-item list-group-item-action">${trigger}</button>`
+      `<div class="list-group-item d-flex p-0 justify-content-between">
+          <button type="button" class="btn w-100 triggerButton">
+            ${trigger}
+          </button>
+          <button class="btn btn-danger rounded-0 deleteButton">
+            <i class="bi bi-trash3"></i>
+          </button>
+        </div>`
     );
   }
 
   $(".list-group").html(savedSnippetElements);
+  $(".deleteButton").hide();
 
-  $(".list-group button").on("click", function () {
-    updateForm($(this));
+  $(".list-group .triggerButton").on("click", function () {
+    updateForm(this);
+  });
+
+  $(".list-group .deleteButton").on("click", function () {
+    const trigger = $(this).parent().children(".triggerButton").text().trim();
+    localStorage.removeItem(trigger);
+
+    updateSavedSnippets();
+  });
+
+  $(".list-group-item").on("mouseover", function () {
+    $(this).children(".deleteButton").show();
+  });
+
+  $(".list-group-item").on("mouseout", function () {
+    $(this).children(".deleteButton").hide();
   });
 }
 
@@ -200,7 +223,7 @@ function createTestEditor() {
 }
 
 function updateForm(triggerElement) {
-  const trigger = $(triggerElement).text();
+  const trigger = $(triggerElement).text().trim();
   const snippet = localStorage.getItem(trigger);
 
   if (!snippet) return alert("Snippet not found.");
