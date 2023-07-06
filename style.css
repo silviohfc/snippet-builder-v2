@@ -5,3 +5,8 @@ html,body{height:100vh;}
 body {
   font-family: 'Fira Code', monospace;
 }
+
+.container-fluid {
+  max-height: calc(100% - 56px);
+  height: calc(100% - 56px);
+}

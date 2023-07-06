@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,10 +20,10 @@
         </div>
       </nav>
 
-      <div class="container-fluid flex-grow-1 h-100 pt-3 pb-3">
+      <div class="container-fluid flex-grow-1 pt-3 pb-3">
         <div class="container-sm p-0 h-100">
           <div class="row h-100">
-            <div class="col-md-9 d-flex flex-column">
+            <div class="col-md-9 d-flex flex-column h-100">
               <div class="row">
                 <div class="col-md-3">
                   <label for="inputTrigger" class="form-label">Trigger</label>
@@ -34,13 +34,27 @@
                   <input type="text" id="inputDescription" class="form-control">
                 </div>
               </div>
-              <div class="row flex-grow-1">
+              <div class="row h-100">
                 <div class="col-md-12 mt-3 flex-grow-1">
                   <div class="h-100 border" id="code-editor"></div>
                 </div>
               </div>
             </div>
-            <div class="col-md-3">lista</div>
+            <div class="col-md-3 d-flex flex-column h-100">
+              <div class="row">
+                <label class="mb-2">Saved Snippets</label>
+              </div>
+              <div class="row h-100 mh-100 overflow-auto">
+                <div class="list-group">
+                  <button type="button" class="list-group-item list-group-item-action">A second button item</button>
+                  <button type="button" class="list-group-item list-group-item-action">A second button item</button>
+                  
+                </div>
+              </div>
+              <div class="row">
+                <button type="button" class="btn btn-success mt-3">Save</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
