@@ -73,20 +73,40 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Test & Build</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <div class="row h-100">
-              <div class="col-md-7">
-                <div class="h-100 border" id="test-code-editor"></div>
+              <div class="col-md-7 d-flex flex-column align-items-center text-center">
+                <h3>Test</h3>
+                <span>(Ctrl + Space to show your snippets)</span>
+                <div class="h-100 w-100 mt-3 border text-start" id="test-code-editor"></div>
               </div>
-              <div class="col-md-5"></div>
+              <div class="col-md-5 d-flex flex-column align-items-center text-center">
+                <h3>Generate</h3>
+                <span>(Select your favorite code editor)</span>
+                <div class="w-100 h-50 mt-3 select-code-editors d-flex flex-column overflow-auto">
+                  <?php 
+                    $files = glob('./generators/*.php');
+                    foreach ($files as $file) {
+                      require($file);
+                      
+                      $classFileName = substr($file, 13);
+                      $className = substr($classFileName, 0, -4);
+                        
+                        
+                      $instance = new $className;
+                      
+                      echo '<button 
+                                class="btn w-100 mb-1" 
+                                style="background-color: '.$instance->color.'; color: '.$instance->textColor.';"
+                                onclick="copyGeneratedSnippets(this,\''.$instance->generate().'\')"
+                                >'.$instance->displayName.'</button>';
+                    }
+                  ?>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>

@@ -236,3 +236,15 @@ function updateForm(triggerElement) {
   inputDescription.val(parsedSnippet.description);
   editor.setValue(parsedSnippet.code);
 }
+
+function copyGeneratedSnippets(buttonElement, generatedConfiguration) {
+  const currentText = $(buttonElement).text();
+
+  navigator.clipboard.writeText(generatedConfiguration);
+
+  $(buttonElement).text("Copied to clipboard!");
+
+  setTimeout(() => {
+    $(buttonElement).text(currentText);
+  }, 1000);
+}
