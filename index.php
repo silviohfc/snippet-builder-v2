@@ -98,9 +98,10 @@
                       $instance = new $className;
                       
                       echo '<button 
-                                class="btn w-100 mb-1" 
+                                class="btn w-100 mb-1"
+                                id="'.get_class($instance).'" 
                                 style="background-color: '.$instance->color.'; color: '.$instance->textColor.';"
-                                onclick="copyGeneratedSnippets(this,\''.$instance->generate().'\')"
+                                onclick="copyGeneratedSnippets(this)"
                                 >'.$instance->displayName.'</button>';
                     }
                   ?>

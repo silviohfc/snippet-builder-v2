@@ -237,14 +237,36 @@ function updateForm(triggerElement) {
   editor.setValue(parsedSnippet.code);
 }
 
-function copyGeneratedSnippets(buttonElement, generatedConfiguration) {
+function copyGeneratedSnippets(buttonElement) {
+  const className = $(buttonElement).attr("id");
   const currentText = $(buttonElement).text();
 
-  navigator.clipboard.writeText(generatedConfiguration);
+  const localStorageAsArray = Object.entries(localStorage);
+  const filtered = localStorageAsArray.filter(
+    ([key]) => !key.startsWith("sys_")
+  );
+  const snippets = Object.fromEntries(filtered);
 
-  $(buttonElement).text("Copied to clipboard!");
+  const request = $.ajax({
+    url: "generate.php",
+    type: "post",
+    data: {
+      className,
+      snippets,
+    },
+  });
 
-  setTimeout(() => {
-    $(buttonElement).text(currentText);
-  }, 1000);
+  request.done(function (response, textStatus, jqXHR) {
+    navigator.clipboard.writeText(response);
+
+    $(buttonElement).text("Copied to clipboard!");
+
+    setTimeout(() => {
+      $(buttonElement).text(currentText);
+    }, 1000);
+  });
+
+  request.fail(function (jqXHR, textStatus, errorThrown) {
+    alert("Error generating code editor snippets");
+  });
 }
