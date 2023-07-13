@@ -8,8 +8,8 @@ body {
 }
 
 .container-fluid {
-  max-height: calc(100% - 56px);
-  height: calc(100% - 56px);
+  max-height: calc(100% - 86px);
+  height: calc(100% - 86px);
 }
 
 .modal-content {
@@ -19,4 +19,8 @@ body {
 textarea {
   resize: none;
   font-size: 8px;
+}
+
+.adSnippets {
+  background-color: aqua;
 }
