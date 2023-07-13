@@ -63,8 +63,22 @@
                   
                 </div>
               </div>
+              <div class="row pt-2 pb-2 h-100 mh-100">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1332613373229761"
+                    crossorigin="anonymous"></script>
+                <!-- Square Responsive Ads -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-1332613373229761"
+                    data-ad-slot="3816645138"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+              </div>
               <div class="row">
-                <button type="submit" class="btn btn-success mt-3" id="button-save"><i class="bi bi-plus-lg"></i> Save</button>
+                <button type="submit" class="btn btn-success" id="button-save"><i class="bi bi-plus-lg"></i> Save</button>
               </div>
             </div>
           </div>
@@ -94,7 +108,20 @@
                     <button class="btn btn-primary w-100 mb-1" id="buttonCopy">Copy</button>
                     <textarea class="form-control" id="textAreaGeneratedCode" cols="30" rows="15" readonly></textarea>
                   </div>
-                  <div class="">AD</div>
+                  <div class="w-100 h-100 mt-2">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1332613373229761"
+                        crossorigin="anonymous"></script>
+                    <!-- Square Responsive Ads -->
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-1332613373229761"
+                        data-ad-slot="3816645138"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                  </div>
                 </div>
               </div>
             </div>
