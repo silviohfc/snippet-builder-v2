@@ -15,3 +15,8 @@ body {
 .modal-content {
   height: calc(100vh - 56px);
 }
+
+textarea {
+  resize: none;
+  font-size: 8px;
+}

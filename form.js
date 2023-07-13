@@ -17,25 +17,30 @@ $("document").ready(() => {
   });
 
   $("#button-save").on("click", function () {
+    const inputName = $("#inputName");
     const inputTrigger = $("#inputTrigger");
     const inputDescription = $("#inputDescription");
     const codeEditor = $("#code-editor");
 
+    inputName.removeClass("is-invalid");
     inputTrigger.removeClass("is-invalid");
     inputDescription.removeClass("is-invalid");
     codeEditor.removeClass("border-danger");
 
+    const nameValue = inputName.val().trim();
     const triggerValue = inputTrigger.val().trim();
     const descriptionValue = inputDescription.val().trim();
     const codeValue = editor.getValue();
 
-    if (!triggerValue || !descriptionValue || !codeValue) {
+    if (!nameValue || !triggerValue || !descriptionValue || !codeValue) {
+      if (!nameValue) inputName.addClass("is-invalid");
       if (!triggerValue) inputTrigger.addClass("is-invalid");
       if (!descriptionValue) inputDescription.addClass("is-invalid");
       if (!codeValue) codeEditor.addClass("border-danger");
       return;
     }
 
+    inputName.val("");
     inputTrigger.val("");
     inputDescription.val("");
     editor.setValue("");
@@ -43,6 +48,7 @@ $("document").ready(() => {
     localStorage.setItem(
       triggerValue,
       JSON.stringify({
+        name: nameValue,
         description: descriptionValue,
         code: codeValue,
       })
@@ -60,6 +66,11 @@ $("document").ready(() => {
     disableLanguageLibs();
     registerSnippets();
     createTestEditor();
+    generateSnippetsCode();
+  });
+
+  $("#buttonCopy").on("click", function () {
+    copyGeneratedSnippets();
   });
 });
 
@@ -229,44 +240,51 @@ function updateForm(triggerElement) {
   if (!snippet) return alert("Snippet not found.");
 
   const parsedSnippet = JSON.parse(snippet);
+  const inputName = $("#inputName");
   const inputTrigger = $("#inputTrigger");
   const inputDescription = $("#inputDescription");
 
   inputTrigger.val(trigger);
+  inputName.val(parsedSnippet.name);
   inputDescription.val(parsedSnippet.description);
   editor.setValue(parsedSnippet.code);
 }
 
-function copyGeneratedSnippets(buttonElement) {
-  const className = $(buttonElement).attr("id");
-  const currentText = $(buttonElement).text();
+function generateSnippetsCode() {
+  const snippetsArray = [];
 
-  const localStorageAsArray = Object.entries(localStorage);
-  const filtered = localStorageAsArray.filter(
-    ([key]) => !key.startsWith("sys_")
-  );
-  const snippets = Object.fromEntries(filtered);
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
 
-  const request = $.ajax({
-    url: "generate.php",
-    type: "post",
-    data: {
-      className,
-      snippets,
-    },
-  });
+    if (key.startsWith("sys_")) {
+      continue;
+    }
 
-  request.done(function (response, textStatus, jqXHR) {
-    navigator.clipboard.writeText(response);
+    const value = localStorage.getItem(key);
+    const object = JSON.parse(value);
 
-    $(buttonElement).text("Copied to clipboard!");
+    const newSnippet = {
+      [object.name]: {
+        prefix: key,
+        body: object.code,
+        description: object.description,
+      },
+    };
 
-    setTimeout(() => {
-      $(buttonElement).text(currentText);
-    }, 1000);
-  });
+    snippetsArray.push(newSnippet);
+  }
 
-  request.fail(function (jqXHR, textStatus, errorThrown) {
-    alert("Error generating code editor snippets");
-  });
+  const arrayText = JSON.stringify(snippetsArray, null, 2);
+  $("#textAreaGeneratedCode").val(arrayText);
+}
+
+function copyGeneratedSnippets() {
+  const snippetsCode = $("#textAreaGeneratedCode").val();
+  navigator.clipboard.writeText(snippetsCode);
+
+  $("#buttonCopy").text("Copied to clipboard!");
+
+  setTimeout(() => {
+    $("#buttonCopy").text("Copy");
+  }, 1000);
 }

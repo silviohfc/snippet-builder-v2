@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Snippet Builder</title>
+    <title>VS Code Snippet Builder</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
@@ -15,7 +15,7 @@
       <!-- NAVBAR -->
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-sm d-flex justify-content-between p-0">
-          <a class="navbar-brand" href="#">Snippet Builder</a>
+          <a class="navbar-brand" href="#">VS Code Snippet Builder</a>
           <div class="row">
             <div class="col-md-6 align-self-center">
               <div class="form-check form-switch">
@@ -36,10 +36,14 @@
             <div class="col-md-9 d-flex flex-column h-100">
               <div class="row">
                 <div class="col-md-3">
+                  <label for="inputName" class="form-label">Name</label>
+                  <input type="text" id="inputName" class="form-control">
+                </div>
+                <div class="col-md-3">
                   <label for="inputTrigger" class="form-label">Trigger</label>
                   <input type="text" id="inputTrigger" class="form-control">
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-6">
                   <label for="inputDescription" class="form-label">Description</label>
                   <input type="text" id="inputDescription" class="form-control">
                 </div>
@@ -84,27 +88,13 @@
               </div>
               <div class="col-md-5 d-flex flex-column align-items-center text-center">
                 <h3>Generate</h3>
-                <span>(Select your favorite code editor)</span>
-                <div class="w-100 h-50 mt-3 select-code-editors d-flex flex-column overflow-auto">
-                  <?php 
-                    $files = glob('./generators/*.php');
-                    foreach ($files as $file) {
-                      require($file);
-                      
-                      $classFileName = substr($file, 13);
-                      $className = substr($classFileName, 0, -4);
-                        
-                        
-                      $instance = new $className;
-                      
-                      echo '<button 
-                                class="btn w-100 mb-1"
-                                id="'.get_class($instance).'" 
-                                style="background-color: '.$instance->color.'; color: '.$instance->textColor.';"
-                                onclick="copyGeneratedSnippets(this)"
-                                >'.$instance->displayName.'</button>';
-                    }
-                  ?>
+                <span>(Copy the generated code of your snippets)</span>
+                <div class="w-100 h-100 mt-3 select-code-editors d-flex flex-column justify-content-between">
+                  <div class="">
+                    <button class="btn btn-primary w-100 mb-1" id="buttonCopy">Copy</button>
+                    <textarea class="form-control" id="textAreaGeneratedCode" cols="30" rows="15" readonly></textarea>
+                  </div>
+                  <div class="">AD</div>
                 </div>
               </div>
             </div>
